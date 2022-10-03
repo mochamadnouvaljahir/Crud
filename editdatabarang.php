@@ -1,0 +1,73 @@
+<?php
+include_once("koneksi.php");
+$id=$_GET['id'];
+$query="SELECT * FROM tb_databarang WHERE id_barang= " .$id;
+$hasil=mysqli_query($conn,$query);
+?>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Edit Barang</title>
+  </head>
+  <body>
+  <div class="alert alert-success text-center" role="alert">
+     <h2>Form Edit Data Barang N7SPORTS</h2>
+    </div>
+    <div class="container" style="margin-top: 80px">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-header">
+              EDIT BARANG
+            </div>
+            <div class="card-body">
+              <form action="proseseditbarang.php" method="POST">
+              <?php while ($data=mysqli_fetch_array($hasil)) { ?>
+              <div class="form-group">
+                  <label for="kode">Kode Barang</label>
+                  <input type="hidden" name="id" value="<?php echo $data['id_barang'] ?>">
+                  <input type="text" name="kode" value="<?php echo $data['kode_barang']?>"  placeholder="Masukkan Kode Barang" class="form-control">
+              </div>
+           
+              <div class="form-group">
+                  <label for="nama">Nama Barang</label>
+                  <input type="text" name="nama" placeholder="Masukkan Nama Barang" value="<?php echo $data['nama_barang']?>" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="harga">Harga</label>
+                <input type="text" name="harga" placeholder="Masukkan harga barang" value="<?php echo $data['harga']?>" class="form-control">
+              </div>
+                
+              <div class="form-group">
+                <label for="stok">Stok</label>
+                <input type="text" name="stok" placeholder="Masukkan Jumlah Stok" value="<?php echo $data['stok']?>" class="form-control">
+              </div>
+  
+              <button type="submit" class="btn btn-success">SIMPAN</button>
+              <a hreaf="index.php"><button type="submit" class="btn btn-warning">KEMBALI<a></button>
+                
+            </form>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- Optional JavaScript -->
+        
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>  
